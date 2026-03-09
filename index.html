@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>APEXLIFTS | Training OS</title>
+    <title>APEXLIFTS | Training Partner</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;900&family=Bebas+Neue&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -77,9 +77,9 @@
     <nav>
         <div class="logo" onclick="showTab('home')">APEXLIFTS</div>
         <div class="nav-links">
-            <a id="nav-home" onclick="showTab('home')">PROTOCOL</a>
-            <a id="nav-tracker" onclick="showTab('tracker')">TRAIN</a>
-            <a id="nav-dash" onclick="showTab('dash')">DATA</a>
+            <a id="nav-home" onclick="showTab('home')">HOME</a>
+            <a id="nav-tracker" onclick="showTab('tracker')">TRACK</a>
+            <a id="nav-dash" onclick="showTab('dash')">ACHIEVEMENTS</a>
             <a id="nav-tools" onclick="showTab('tools')">UTILS</a>
         </div>
     </nav>
@@ -95,7 +95,7 @@
             <div class="container content-block">
                 <div class="section-header">
                     <h2>ABOUT US</h2>
-                    <p>APEXLIFTS is not a social network. It is a tool of precision. We provide a clean, local-first environment for you to track progressive overload without the bloat of corporate fitness apps.</p>
+                    <p>APEXLIFTS is not a social network. We are Just Gym Go-ers who wanted to track our progess easily and remotely, APEXLIFTS help you track your PR Progress on your Device, and Improve your next session</p>
                 </div>
                 <div style="background: var(--surface); height: 300px; border: 1px solid var(--border);"></div>
             </div>
@@ -119,11 +119,11 @@
 
         <section id="testimonials">
             <div class="container">
-                <div class="section-header" style="text-align: center;"><h2>VOICE OF THE COLLECTIVE</h2></div>
+                <div class="section-header" style="text-align: center;"><h2>TESTIMONIALS</h2></div>
                 <div class="testimonial-grid">
-                    <div class="t-card"><p>"The only interface that understands the need for raw, unfiltered progress tracking."</p><span>Operator 001</span></div>
-                    <div class="t-card"><p>"Offline capability and the plate calculator make this mandatory for my leg days."</p><span>Operator 088</span></div>
-                    <div class="t-card"><p>"MECS Certified and data sovereign. This is the gold standard for secure training."</p><span>Operator 231</span></div>
+                    <div class="t-card"><p>"Our PR, Our Privacy, This helped me Track my Progress with ease and securely"</p><span>User 581</span></div>
+                    <div class="t-card"><p>"Offline capability and the plate calculator made this mandatory for my leg days."</p><span>User 034</span></div>
+                    <div class="t-card"><p>"This helped me increase my PR by 10 Kgs in just 2 Weeks"</p><span>User 231</span></div>
                 </div>
             </div>
         </section>
@@ -131,7 +131,7 @@
 
     <main id="tab-tracker" class="hidden container" style="margin-top: 100px;">
         <div id="setup-view" class="hidden">
-            <h2 class="bebas" style="font-size: 3rem; color: var(--primary);">ESTABLISH PROTOCOL</h2>
+            <h2 class="bebas" style="font-size: 3rem; color: var(--primary);">WELCOME TO APEXLIFTS</h2>
             <input type="text" id="user-name" placeholder="OPERATOR NAME">
             <div id="day-list" style="margin: 30px 0;">
                 <div class="ex-item">
@@ -140,7 +140,7 @@
                 </div>
             </div>
             <button class="btn sec" style="width: 100%;" onclick="addDayField()">+ ADD SPLIT</button>
-            <button class="btn" style="width: 100%;" onclick="finalizeSetup()">CONFIRM IDENTITY</button>
+            <button class="btn" style="width: 100%;" onclick="finalizeSetup()">START TRACKING</button>
         </div>
 
         <div id="main-tracker" class="hidden">
@@ -153,12 +153,12 @@
                 </div>
             </div>
             <div id="exercise-list"></div>
-            <button class="btn" style="width: 100%;" onclick="logSession()">LOG COMPLETION</button>
+            <button class="btn" style="width: 100%;" onclick="logSession()">COMPLETE SESSION</button>
         </div>
     </main>
 
     <main id="tab-dash" class="hidden container" style="margin-top: 100px;">
-        <h2 class="bebas" style="font-size: 3rem; color: var(--primary);">OPERATOR ACHIEVEMENTS</h2>
+        <h2 class="bebas" style="font-size: 3rem; color: var(--primary);">ACHIEVEMENTS</h2>
         <div id="badge-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; margin-top: 30px;"></div>
     </main>
 
@@ -190,7 +190,7 @@
 
     <footer>
         <div class="logo" style="margin-bottom: 20px;">APEXLIFTS</div>
-        <p>A MECS CERTIFIED INITIATIVE | CRAFTED BY AATHITHYA</p>
+        <p>A MECS CERTIFIED | CRAFTED BY THE PEOPLE</p>
         <p style="font-size: 0.6rem; letter-spacing: 2px; margin-top: 10px;">&copy; 2026 COIMBATORE COLLECTIVE</p>
     </footer>
 
