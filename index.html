@@ -21,6 +21,7 @@
 
         h1, h2, h3, .bebas { font-family: 'Bebas Neue', cursive; letter-spacing: 2px; margin: 0; }
 
+        /* Updated Navigation Styles */
         nav {
             position: fixed; top: 0; width: 100%; padding: 20px 40px;
             background: rgba(5, 5, 5, 0.9); backdrop-filter: blur(15px);
@@ -28,9 +29,53 @@
             z-index: 1000; border-bottom: 1px solid var(--border);
         }
         .logo { font-size: 1.8rem; color: var(--primary); letter-spacing: 4px; font-weight: 900; cursor: pointer; }
+        
         .nav-links { display: flex; gap: 25px; }
         .nav-links a { color: var(--dim); text-decoration: none; font-size: 0.8rem; font-weight: 900; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
         .nav-links a.active, .nav-links a:hover { color: var(--primary); }
+
+        /* Hamburger Menu Icon */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1100;
+        }
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--primary);
+            transition: 0.3s;
+        }
+
+        /* Mobile Sidebar */
+        @media (max-width: 768px) {
+            nav { padding: 15px 20px; }
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                background: var(--surface);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: 0.4s;
+                border-left: 1px solid var(--border);
+                box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+            }
+            .nav-links.active { right: 0; }
+            .nav-links a { font-size: 1.2rem; }
+            .hamburger { display: flex; }
+            
+            /* Animation for X */
+            .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .hamburger.open span:nth-child(2) { opacity: 0; }
+            .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+        }
 
         section { padding: 100px 20px; border-bottom: 1px solid var(--border); }
         .container { max-width: 1100px; margin: 0 auto; }
@@ -46,7 +91,11 @@
         .section-header p { color: var(--dim); font-size: 1.2rem; }
 
         .content-block { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        @media (max-width: 768px) { .content-block { grid-template-columns: 1fr; } .hero { height: auto; padding: 150px 20px; } }
+        @media (max-width: 768px) { 
+            .content-block { grid-template-columns: 1fr; } 
+            .hero { height: auto; padding: 150px 20px; } 
+            .section-header h2 { font-size: 3rem; }
+        }
 
         .stats-strip { background: var(--surface); padding: 60px 0; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 40px; }
         .stat-item { text-align: center; min-width: 200px; }
@@ -76,7 +125,12 @@
 
     <nav>
         <div class="logo" onclick="showTab('home')">APEXLIFTS</div>
-        <div class="nav-links">
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="nav-links" id="navLinks">
             <a id="nav-home" onclick="showTab('home')">HOME</a>
             <a id="nav-tracker" onclick="showTab('tracker')">TRACK</a>
             <a id="nav-dash" onclick="showTab('dash')">ACHIEVEMENTS</a>
@@ -129,7 +183,7 @@
         </section>
     </main>
 
-    <main id="tab-tracker" class="hidden container" style="margin-top: 100px;">
+    <main id="tab-tracker" class="hidden container" style="margin-top: 100px; padding-bottom: 50px;">
         <div id="setup-view" class="hidden">
             <h2 class="bebas" style="font-size: 3rem; color: var(--primary);">WELCOME TO APEXLIFTS</h2>
             <input type="text" id="user-name" placeholder="OPERATOR NAME">
@@ -144,7 +198,7 @@
         </div>
 
         <div id="main-tracker" class="hidden">
-            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; flex-wrap: wrap; gap: 20px;">
                 <h2 class="bebas" id="current-day-tag" style="font-size: 4rem; color: var(--primary);">--</h2>
                 <div style="text-align: right;">
                     <span id="streak-now" style="font-size: 2rem; font-family: 'Bebas Neue';">0</span>
@@ -157,13 +211,13 @@
         </div>
     </main>
 
-    <main id="tab-dash" class="hidden container" style="margin-top: 100px;">
+    <main id="tab-dash" class="hidden container" style="margin-top: 100px; padding-bottom: 50px;">
         <h2 class="bebas" style="font-size: 3rem; color: var(--primary);">ACHIEVEMENTS</h2>
         <div id="badge-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; margin-top: 30px;"></div>
     </main>
 
-    <main id="tab-tools" class="hidden container" style="margin-top: 100px;">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+    <main id="tab-tools" class="hidden container" style="margin-top: 100px; padding-bottom: 50px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
             <div class="ex-item">
                 <h2 class="bebas">1-REP MAX</h2>
                 <input type="number" id="rm-w" placeholder="WEIGHT (KG)">
@@ -191,12 +245,27 @@
     <footer>
         <div class="logo" style="margin-bottom: 20px;">APEXLIFTS</div>
         <p>A MECS CERTIFIED | CRAFTED BY THE PEOPLE</p>
-        <p style="font-size: 0.6rem; letter-spacing: 2px; margin-top: 10px;">&copy; 2026 COIMBATORE COLLECTIVE</p>
+        <p style="font-size: 0.6rem; letter-spacing: 2px; margin-top: 10px;">&copy; 2026 APEXLIFTS #APEX</p>
     </footer>
 
     <script>
         let db = JSON.parse(localStorage.getItem('APEX_V6')) || null;
         const sfx = { win: new Audio('https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3') };
+
+        // Mobile Menu Functions
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const burger = document.getElementById('hamburger');
+            navLinks.classList.toggle('active');
+            burger.classList.toggle('open');
+        }
+
+        function closeMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const burger = document.getElementById('hamburger');
+            navLinks.classList.remove('active');
+            burger.classList.remove('open');
+        }
 
         function save() { localStorage.setItem('APEX_V6', JSON.stringify(db)); }
 
@@ -212,6 +281,7 @@
         }
 
         function showTab(t) {
+            closeMenu(); // Close sidebar on click for mobile
             document.querySelectorAll('main').forEach(m => m.classList.add('hidden'));
             document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
             document.getElementById('tab-' + t).classList.remove('hidden');
@@ -297,6 +367,7 @@
 
         function renderDashboard() {
             const grid = document.getElementById('badge-grid'); grid.innerHTML = '';
+            if(!db) return;
             grid.innerHTML += `<div class="ex-item" style="opacity: ${db.bestStreak >= 7 ? 1 : 0.2}">🔥 7 DAY STREAK</div>`;
             grid.innerHTML += `<div class="ex-item" style="opacity: ${db.bestStreak >= 30 ? 1 : 0.2}">⚡ 30 DAY STREAK</div>`;
             Object.keys(db.history).forEach(ex => {
